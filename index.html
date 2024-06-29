@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NanbaTeam - Social Media Contacts</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+        }
+        .logo {
+            width: 100px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .title {
+            font-family: 'Consolas', monospace;
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .social-media {
+            margin-bottom: 20px;
+        }
+        .social-media a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #555;
+        }
+        .social-media img {
+            width: 40px;
+            height: 40px;
+        }
+        .contact-info {
+            margin-top: 20px;
+        }
+        .disclaimer {
+            font-size: 0.8em;
+            color: #777;
+            text-align: center;
+            padding: 10px 20px;
+            width: 100%;
+            background-color: #eaeaea;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="projectsContainer"></div>
+        <div class="contact-info">
+            <p>Email: <a href="mailto:mail@nanbateam.com">mail@nanbateam.com</a></p>
+        </div>
+        <div class="disclaimer">
+            <p>&copy; 2024 NanbaTeam. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const iconBaseUrl = "https://upload.wikimedia.org/wikipedia/commons/";
+
+            const iconPaths = {
+                facebook: "5/51/Facebook_f_logo_%282019%29.svg",
+                x: "thumb/5/53/X_logo_2023_original.svg/1024px-X_logo_2023_original.svg.png",
+                instagram: "a/a5/Instagram_icon.png",
+                linkedin: "c/ca/LinkedIn_logo_initials.png",
+                email: "4/4e/Mail_%28iOS%29.svg",
+                youtube: "4/42/YouTube_icon_%282013-2017%29.png"
+            };
+
+            const socialMediaLinks = [
+                { 
+                    title: "Nanba FM",
+                    links: [
+                        { platform: "Instagram", url: "https://www.instagram.com/nanba_fm", icon: iconPaths.instagram, alt: "Instagram Logo" },
+                        { platform: "YouTube", url: "https://www.youtube.com/@nanbatv", icon: iconPaths.youtube, alt: "YouTube Logo" },
+                        { platform: "X", url: "https://www.x.com/nanbafm", icon: iconPaths.x, alt: "X Logo" },
+                        { platform: "Email", url: "mailto:fm@nanbateam.com", icon: iconPaths.email, alt: "Email Icon" }
+                    ]
+                },
+                { 
+                    title: "Nanba TV",
+                    links: [
+                        { platform: "Instagram", url: "https://www.instagram.com/nanbatv", icon: iconPaths.instagram, alt: "Instagram Logo" },
+                        { platform: "YouTube", url: "https://www.youtube.com/@nanbatv", icon: iconPaths.youtube, alt: "YouTube Logo" },
+                        { platform: "X", url: "https://www.x.com/nanbatv", icon: iconPaths.x, alt: "X Logo" },
+                        { platform: "Email", url: "mailto:tv@nanbateam.com", icon: iconPaths.email, alt: "Email Icon" }
+                    ]
+                },
+                { 
+                    title: "My Dear Dindigul",
+                    links: [
+                        { platform: "Instagram", url: "https://www.instagram.com/my_dear_dindigul", icon: iconPaths.instagram, alt: "Instagram Logo" },
+                        { platform: "Email", url: "mailto:dindigul@nanbateam.com", icon: iconPaths.email, alt: "Email Icon" }
+                    ]
+                },
+                { 
+                    title: "Ariyalur Icon",
+                    links: [
+                        { platform: "Instagram", url: "https://www.instagram.com/ariyalur_icon_tn61", icon: iconPaths.instagram, alt: "Instagram Logo" },
+                        { platform: "YouTube", url: "https://www.youtube.com/@ariyaluricon", icon: iconPaths.youtube, alt: "YouTube Logo" },
+                        { platform: "Email", url: "mailto:ariyalur@nanbateam.com", icon: iconPaths.email, alt: "Email Icon" }
+                    ]
+                },
+                { 
+                    title: "From Karur",
+                    links: [
+                        { platform: "Instagram", url: "https://www.instagram.com/fromkarur", icon: iconPaths.instagram, alt: "Instagram Logo" },
+                        { platform: "YouTube", url: "https://www.youtube.com/@fromkarur", icon: iconPaths.youtube, alt: "YouTube Logo" },
+                        { platform: "Email", url: "mailto:karur@nanbateam.com", icon: iconPaths.email, alt: "Email Icon" }
+                    ]
+                },
+                { 
+                    title: "Nanba Team",
+                    links: [
+                        { platform: "Instagram", url: "https://www.instagram.com/nanbateam", icon: iconPaths.instagram, alt: "Instagram Logo" },
+                        { platform: "YouTube", url: "https://www.youtube.com/@nanbateam", icon: iconPaths.youtube, alt: "YouTube Logo" },
+                        { platform: "X", url: "https://www.x.com/nanbateam", icon: iconPaths.x, alt: "X Logo" },
+                        { platform: "Email", url: "mailto:mail@nanbateam.com", icon: iconPaths.email, alt: "Email Icon" }
+                    ]
+                }
+            
+            ];
+
+            const projectsContainer = document.getElementById("projectsContainer");
+
+            socialMediaLinks.forEach(project => {
+                const projectDiv = document.createElement("div");
+                projectDiv.classList.add("social-media");
+
+                const projectTitle = document.createElement("h2");
+                projectTitle.textContent = `${project.title}`;
+
+                projectDiv.appendChild(projectTitle);
+
+                project.links.forEach(item => {
+                    const link = document.createElement("a");
+                    link.href = item.url;
+                    link.target = "_blank";
+
+                    const img = document.createElement("img");
+                    img.src = iconBaseUrl + item.icon;
+                    img.alt = item.alt;
+
+                    link.appendChild(img);
+                    projectDiv.appendChild(link);
+                });
+
+                projectsContainer.appendChild(projectDiv);
+            });
+        });
+    </script>
+</body>
+</html>
